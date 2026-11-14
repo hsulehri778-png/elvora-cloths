@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ELVORA CLOTHS — premium fashion for men, women and kids.">
+<title>ELVORA CLOTHS | Premium Fashion Store</title>
+<style>
+:root{--black:#111;--gold:#c6a15b;--cream:#f7f4ed;--white:#fff;--grey:#777}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#fff;color:var(--black)}
+button{cursor:pointer;border:0;font-weight:bold;transition:.25s}
+header{background:var(--black);color:#fff;padding:17px 6%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{color:var(--gold);font-size:26px;letter-spacing:5px;font-weight:bold}
+.logo small{display:block;font-size:9px;letter-spacing:4px;text-align:center;margin-top:4px}
+nav{display:flex;align-items:center;gap:22px}
+nav a{color:#fff;text-decoration:none;font-size:13px;cursor:pointer}
+nav a:hover{color:var(--gold)}
+.menu-btn{display:none;color:#fff;background:none;font-size:25px}
+.hero{min-height:560px;background:linear-gradient(#0007,#0009),url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600") center/cover;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;padding:30px}
+.hero-content{max-width:700px}
+.hero h1{font-size:clamp(34px,7vw,58px);letter-spacing:7px;margin:15px 0}
+.hero p{font-size:15px;letter-spacing:3px;margin-bottom:24px}
+.gold-btn{background:var(--gold);color:#111;padding:14px 28px;letter-spacing:1.5px}
+.gold-btn:hover{background:#e0c58d}
+.outline-btn{background:transparent;color:var(--gold);border:1px solid var(--gold);padding:11px 22px}
+.outline-btn:hover{background:var(--gold);color:#111}
+.section{padding:60px 6%;text-align:center}
+.section-title{font-size:28px;letter-spacing:3px;margin-bottom:12px}
+.subtitle{color:var(--grey);margin-bottom:32px}
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.category{position:relative;height:370px;overflow:hidden;background:#eee}
+.category img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.category:hover img{transform:scale(1.06)}
+.category-info{position:absolute;bottom:0;left:0;width:100%;padding:35px 15px;color:#fff;background:linear-gradient(transparent,#000d)}
+.category-info h3{font-size:24px;letter-spacing:3px;margin-bottom:14px}
+.page{display:none;min-height:60vh}.page.active{display:block}
+.page-heading{background:var(--cream);padding:48px 15px;text-align:center}
+.page-heading h1{letter-spacing:4px;font-size:32px;margin-bottom:8px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px}
+.product{background:#fff;border:1px solid #eee;text-align:left;overflow:hidden;transition:.25s}
+.product:hover{box-shadow:0 8px 25px #00000013;transform:translateY(-3px)}
+.product img{width:100%;height:280px;object-fit:cover;display:block;background:#eee}
+.product-info{padding:15px}
+.product h3{font-size:15px;margin-bottom:9px}
+.price{color:#98702c;font-weight:bold;margin-bottom:13px}
+.product-actions{display:flex;gap:8px}
+.product-actions button{flex:1;padding:11px 5px;font-size:10px;letter-spacing:.5px}
+.view-btn{background:#eee}.buy-btn{background:var(--gold)}
+.product-actions button:hover{background:#111;color:#fff}
+.detail-layout{max-width:1000px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:35px;text-align:left;padding:25px 10px}
+.detail-layout img{width:100%;max-height:520px;object-fit:cover}
+.detail-info h1{font-size:28px;margin:15px 0}
+.detail-info p{line-height:1.7;color:#666;margin:15px 0}
+.detail-info label,.checkout label{display:block;margin:17px 0 7px;font-weight:bold}
+select,input,textarea{width:100%;padding:12px;border:1px solid #ddd;font-size:15px;background:#fff}
+.detail-info button{width:100%;margin-top:12px}
+.cart-item{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px;border-bottom:1px solid #ddd;text-align:left}
+.cart-item h3{font-size:15px}.cart-item p{margin-top:7px;color:#98702c}
+.quantity{display:flex;align-items:center;gap:10px}.quantity button{padding:8px 12px;background:#eee}
+.remove-btn{background:#fee;color:#a22;padding:9px}
+.cart-total{text-align:right;padding:25px 0;font-size:22px}
+.empty{padding:45px;color:#777}
+.checkout{max-width:550px;margin:25px auto;text-align:left}
+.checkout button{width:100%;margin-top:20px}
+.back-btn{background:#eee;padding:11px 18px;margin-bottom:20px}
+.features{background:var(--cream);display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:42px 6%;text-align:center}
+.features h3{margin:10px;font-size:15px}.features p{color:#777;font-size:13px}
+footer{background:#111;color:#fff;text-align:center;padding:42px 20px}
+footer .logo{margin-bottom:18px}footer p{color:#aaa;margin:11px;font-size:13px}
+@media(max-width:700px){
+ header{padding:14px 5%}.logo{font-size:22px}.menu-btn{display:block}
+ nav{display:none;position:absolute;top:62px;left:0;width:100%;background:#111;flex-direction:column;padding:20px;gap:19px}
+ nav.open{display:flex}.hero{min-height:430px}.hero h1{letter-spacing:3px}
+ .categories{grid-template-columns:1fr}.category{height:330px}
+ .section{padding:42px 5%}.section-title{font-size:23px}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .product img{height:185px}.product-info{padding:11px}.product h3{font-size:13px}
+ .product-actions{flex-direction:column}.product-actions button{padding:10px 3px}
+ .detail-layout{grid-template-columns:1fr;gap:15px}.cart-item{flex-wrap:wrap}
+ .features{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">ELVORA<small>CLOTHS</small></div>
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+  <nav id="nav">
+    <a onclick="showPage('home')">HOME</a>
+    <a onclick="showPage('men')">MEN</a>
+    <a onclick="showPage('women')">WOMEN</a>
+    <a onclick="showPage('kids')">KIDS</a>
+    <a onclick="showPage('cart')">CART (<span id="cartCount">0</span>)</a>
+  </nav>
+</header>
+
+<main>
+<div id="home" class="page active">
+  <section class="hero"><div class="hero-content">
+    <p>THE NEW COLLECTION</p><h1>ELVORA CLOTHS</h1><p>STYLE THAT DEFINES YOU</p>
+    <button class="gold-btn" onclick="showPage('men')">EXPLORE COLLECTION</button>
+  </div></section>
+  <section class="section">
+    <h2 class="section-title">SHOP BY CATEGORY</h2><p class="subtitle">Discover your personal style</p>
+    <div class="categories">
+      <div class="category"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700" alt="Men's fashion"><div class="category-info"><h3>MEN</h3><button class="outline-btn" onclick="showPage('men')">EXPLORE</button></div></div>
+      <div class="category"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700" alt="Women's fashion"><div class="category-info"><h3>WOMEN</h3><button class="outline-btn" onclick="showPage('women')">EXPLORE</button></div></div>
+      <div class="category"><img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700" alt="Kids fashion"><div class="category-info"><h3>KIDS</h3><button class="outline-btn" onclick="showPage('kids')">EXPLORE</button></div></div>
+    </div>
+  </section>
+  <section class="section"><h2 class="section-title">FEATURED PRODUCTS</h2><p class="subtitle">Selected styles from ELVORA</p><div class="products" id="featuredProducts"></div></section>
+  <section class="features">
+    <div><h3>✦ PREMIUM STYLE</h3><p>Fashion for every occasion</p></div>
+    <div><h3>✦ EASY SHOPPING</h3><p>A simple shopping experience</p></div>
+    <div><h3>✦ EASYPAISA PAYMENT</h3><p>Pay online using Easypaisa</p></div>
+  </section>
+</div>
+
+<div id="men" class="page"><div class="page-heading"><h1>MEN COLLECTION</h1><p>Discover modern men's fashion</p></div><section class="section"><div class="products" id="menProducts"></div></section></div>
+<div id="women" class="page"><div class="page-heading"><h1>WOMEN COLLECTION</h1><p>Explore elegance and confidence</p></div><section class="section"><div class="products" id="womenProducts"></div></section></div>
+<div id="kids" class="page"><div class="page-heading"><h1>KIDS COLLECTION</h1><p>Comfort and style for little ones</p></div><section class="section"><div class="products" id="kidsProducts"></div></section></div>
+
+<div id="details" class="page"><section class="section"><button class="back-btn" onclick="goBack()">← BACK</button><div id="productDetails"></div></section></div>
+
+<div id="cart" class="page"><section class="section">
+  <h2 class="section-title">YOUR SHOPPING CART</h2><p class="subtitle">Review your selected products</p>
+  <div id="cartItems"></div><div class="cart-total" id="total"></div>
+  <button class="gold-btn" onclick="checkoutFromCart()">PROCEED TO CHECKOUT</button>
+</section></div>
+
+<div id="checkout" class="page"><section class="section">
+  <h2 class="section-title">CHECKOUT</h2><p class="subtitle">Complete your delivery details</p>
+  <div class="checkout">
+    <label for="customerName">Full Name</label><input id="customerName" autocomplete="name" placeholder="Enter your name">
+    <label for="customerPhone">Phone Number</label><input id="customerPhone" type="tel" autocomplete="tel" placeholder="03XXXXXXXXX">
+    <label for="customerAddress">Delivery Address</label><textarea id="customerAddress" rows="3" placeholder="Complete delivery address"></textarea>
+    <label for="customerCity">City</label><input id="customerCity" autocomplete="address-level2" placeholder="Your city">
+    <div style="background:var(--cream);padding:16px;margin-top:18px;text-align:left">
+      <h3 style="margin-bottom:8px">ONLINE PAYMENT — EASYPAISA</h3>
+      <p style="color:#666;line-height:1.6">Transfer the order total to the ELVORA CLOTHS Easypaisa merchant account. After payment, share your transaction ID or receipt on WhatsApp so the store can confirm your order.</p>
+      <p style="margin-top:10px"><strong>Merchant account details:</strong> To be added by the store owner.</p>
+    </div>
+    <button class="gold-btn" onclick="placeOrder()">CONTINUE TO WHATSAPP</button>
+  </div>
+</section></div>
+</main>
+
+<footer><div class="logo">ELVORA</div><p>STYLE THAT DEFINES YOU</p><p>Premium Fashion | Quality | Elegance</p><p>Men • Women • Kids</p><p>© 2026 ELVORA CLOTHS. All Rights Reserved.</p></footer>
+
+<script>
+const products=[
+{id:1,name:"Classic Men's Shirt",price:2500,category:"men",image:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700",sizes:["S","M","L","XL"],description:"A stylish everyday shirt with a smart, versatile look."},
+{id:2,name:"Premium Men's Outfit",price:3500,category:"men",image:"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=700",sizes:["M","L","XL"],description:"A modern outfit for casual occasions."},
+{id:3,name:"Casual Men's T-Shirt",price:1900,category:"men",image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=700",sizes:["S","M","L","XL"],description:"An easy-to-wear everyday essential."},
+{id:4,name:"Premium Women's Dress",price:4500,category:"women",image:"https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=700",sizes:["S","M","L"],description:"An elegant dress for special occasions."},
+{id:5,name:"Women's Fashion Outfit",price:3800,category:"women",image:"https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700",sizes:["S","M","L","XL"],description:"Modern fashion with a polished finish."},
+{id:6,name:"Women's Casual Wear",price:3200,category:"women",image:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700",sizes:["S","M","L"],description:"A comfortable and stylish outfit."},
+{id:7,name:"Kids Casual Wear",price:1800,category:"kids",image:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700",sizes:["2-4 Years","5-7 Years","8-10 Years"],description:"Comfortable everyday clothing for kids."},
+{id:8,name:"Kids Fashion Set",price:2200,category:"kids",image:"https://images.unsplash.com/photo-1503919005314-30d93d07d823?w=700",sizes:["2-4 Years","5-7 Years","8-10 Years"],description:"A stylish outfit for little ones."},
+{id:9,name:"Kids Premium Outfit",price:2500,category:"kids",image:"https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=700",sizes:["2-4 Years","5-7 Years","8-10 Years"],description:"A comfortable outfit for little ones."}
+];
+
+let cart=[];
+try{cart=JSON.parse(localStorage.getItem("elvoraCart")||"[]");if(!Array.isArray(cart))cart=[];}catch(e){cart=[];}
+let selectedProduct=null,previousPage="home";
+
+function saveCart(){try{localStorage.setItem("elvoraCart",JSON.stringify(cart));}catch(e){}}
+function toggleMenu(){document.getElementById("nav").classList.toggle("open");}
+function showPage(page){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(page).classList.add("active");
+  document.getElementById("nav").classList.remove("open");
+  window.scrollTo(0,0);
+  if(page==="cart")updateCart();
+}
+function goBack(){showPage(previousPage);}
+function productCard(p){return `<article class="product"><img src="${p.image}" alt="${p.name}" loading="lazy"><div class="product-info"><h3>${p.name}</h3><p class="price">Rs. ${p.price.toLocaleString("en-PK")}</p><div class="product-actions"><button class="view-btn" onclick="openProduct(${p.id})">VIEW DETAILS</button><button class="buy-btn" onclick="openProduct(${p.id})">SHOP NOW</button></div></div></article>`;}
+function displayProducts(){
+  ["men","women","kids"].forEach(category=>{document.getElementById(category+"Products").innerHTML=products.filter(p=>p.category===category).map(productCard).join("");});
+  document.getElementById("featuredProducts").innerHTML=products.slice(0,4).map(productCard).join("");
+}
+function openProduct(id){
+  previousPage=document.querySelector(".page.active").id;
+  selectedProduct=products.find(p=>p.id===id);
+  if(!selectedProduct)return;
+  document.getElementById("productDetails").innerHTML=`<div class="detail-layout"><img src="${selectedProduct.image}" alt="${selectedProduct.name}"><div class="detail-info"><h1>${selectedProduct.name}</h1><h2 class="price">Rs. ${selectedProduct.price.toLocaleString("en-PK")}</h2><p>${selectedProduct.description}</p><label for="productSize">Select Size</label><select id="productSize"><option value="">Choose Size</option>${selectedProduct.sizes.map(s=>`<option value="${s}">${s}</option>`).join("")}</select><label for="productQty">Quantity</label><input type="number" id="productQty" value="1" min="1" max="20"><button class="gold-btn" onclick="addSelectedToCart(false)">ADD TO CART</button><button class="outline-btn" onclick="addSelectedToCart(true)">BUY NOW</button></div></div>`;
+  showPage("details");
+}
+function addSelectedToCart(buyNow){
+  const size=document.getElementById("productSize").value;
+  const qty=Number(document.getElementById("productQty").value);
+  if(!size){alert("Please select a size.");return;}
+  if(!Number.isInteger(qty)||qty<1||qty>20){alert("Enter a quantity from 1 to 20.");return;}
+  const existing=cart.find(item=>item.id===selectedProduct.id&&item.size===size);
+  if(existing)existing.qty+=qty;else cart.push({id:selectedProduct.id,name:selectedProduct.name,price:selectedProduct.price,size,qty});
+  saveCart();updateCart();
+  if(buyNow)showPage("checkout");else{alert("Added to cart!");showPage(previousPage);}
+}
+function updateCart(){
+  document.getElementById("cartCount").textContent=cart.reduce((sum,item)=>sum+item.qty,0);
+  let total=0;
+  document.getElementById("cartItems").innerHTML=cart.map((item,index)=>{
+    total+=item.price*item.qty;
+    return `<div class="cart-item"><div><h3>${item.name}</h3><p>Size: ${item.size}</p><p>Rs. ${(item.price*item.qty).toLocaleString("en-PK")}</p></div><div class="quantity"><button onclick="changeQty(${index},-1)">−</button><strong>${item.qty}</strong><button onclick="changeQty(${index},1)">+</button></div><button class="remove-btn" onclick="removeItem(${index})">REMOVE</button></div>`;
+  }).join("")||'<div class="empty">Your cart is empty.</div>';
+  document.getElementById("total").textContent="Total: Rs. "+total.toLocaleString("en-PK");
+}
+function changeQty(index,amount){if(!cart[index])return;cart[index].qty+=amount;if(cart[index].qty<=0)cart.splice(index,1);saveCart();updateCart();}
+function removeItem(index){cart.splice(index,1);saveCart();updateCart();}
+function checkoutFromCart(){if(!cart.length){alert("Your cart is empty.");return;}showPage("checkout");}
+function placeOrder(){
+  const name=document.getElementById("customerName").value.trim();
+  const phone=document.getElementById("customerPhone").value.trim();
+  const address=document.getElementById("customerAddress").value.trim();
+  const city=document.getElementById("customerCity").value.trim();
+  const payment="Easypaisa (manual online transfer)";
+  if(!name||!phone||!address||!city){alert("Please complete all delivery details.");return;}
+  if(!/^[0-9+\-\s()]{7,20}$/.test(phone)){alert("Please enter a valid phone number.");return;}
+  if(!cart.length){alert("Your cart is empty.");showPage("cart");return;}
+  const total=cart.reduce((sum,item)=>sum+item.price*item.qty,0);
+  let message=`*NEW ORDER - ELVORA CLOTHS*\n\nCustomer: ${name}\nPhone: ${phone}\nAddress: ${address}\nCity: ${city}\n\n*ORDER DETAILS*\n`;
+  cart.forEach(item=>{message+=`\n${item.name}\nSize: ${item.size}\nQuantity: ${item.qty}\nPrice: Rs. ${item.price*item.qty}\n`;});
+  message+=`\n*TOTAL: Rs. ${total}*\nPayment method: ${payment}\nPlease share the Easypaisa transaction ID/receipt after payment.\n\nThank you for shopping with ELVORA!`;
+  // ELVORA CLOTHS WhatsApp number (Pakistan international format)
+  const whatsappNumber="923484887170";
+  if(!/^92\d{10}$/.test(whatsappNumber)){alert("Store WhatsApp number is not configured. Please edit the whatsappNumber value in index.html.");return;}
+  window.open("https://wa.me/"+whatsappNumber+"?text="+encodeURIComponent(message),"_blank");
+}
+displayProducts();updateCart();
+</script>
+</body>
+</html>
